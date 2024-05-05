@@ -1,21 +1,24 @@
+"use client";
+
 import { Inter } from "next/font/google";
-import "./globals.css";
+import { usePathname } from "next/navigation";
 import Header from "./header";
+import PageTransition from "./PageTransition";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Portfolio Sofia Fernandes",
-  description: "Sofia Fernandes' portfolio",
-};
+
 
 export default function RootLayout({ children }) {
+  const pathname = usePathname();
+
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-gray-100 text-gray-900`}>
+      <body className={inter.className}>
         <Header />
         <div className="container mx-auto mt-10">
-          {children}
+          <PageTransition key={pathname}>{children}</PageTransition>
         </div>
       </body>
     </html>
